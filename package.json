@@ -1,6 +1,6 @@
 {
   "name": "couchdb-json-logs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Regular CouchDB logs go in, structured JSON log records go out.",
   "main": "index.js",
   "bin": {

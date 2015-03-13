@@ -20,6 +20,8 @@ parser.on("message", function(record) {
         currentRecord.supplemented = true;
       }
       currentRecord.msg += record.raw;
+    } else {
+      log.info(record.raw);
     }
     return;
   }
@@ -51,6 +53,7 @@ parser.on("message", function(record) {
 
   currentRecord = {record: record, msg: msg, level: level};
   currentRecord.timeout = setTimeout(function() {
-
+    log[currentRecord.level](currentRecord.record, currentRecord.msg);
+    currentRecord = null;
   }, 100);
 });

@@ -21,13 +21,13 @@ parser.on("message", function(record) {
       }
       currentRecord.msg += record.raw;
     } else {
-      log.info(record.raw);
+      log.info(record.raw.trim());
     }
     return;
   }
 
   if (currentRecord) {
-    log[currentRecord.level](currentRecord.record, currentRecord.msg);
+    log[currentRecord.level](currentRecord.record, currentRecord.msg.trim());
     clearTimeout(currentRecord.timeout);
     currentRecord = null;
   }
@@ -53,7 +53,7 @@ parser.on("message", function(record) {
 
   currentRecord = {record: record, msg: msg, level: level};
   currentRecord.timeout = setTimeout(function() {
-    log[currentRecord.level](currentRecord.record, currentRecord.msg);
+    log[currentRecord.level](currentRecord.record, currentRecord.msg.trim());
     currentRecord = null;
   }, 100);
 });
